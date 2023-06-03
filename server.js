@@ -10,13 +10,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(
-    {
-        origin: ["http://localhost:3000"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
+// app.use(cors(
+//     {
+//         origin: ["http://localhost:3000"],
+//         methods: ["POST", "GET"],
+//         credentials: true
+//     }
+// ));
 // app.use(cors());
 const db = mysql.createConnection({
     host: "mysql-129792-0.cloudclusters.net",
@@ -129,7 +129,6 @@ app.post('/login', (req, res) => {
             return res.json("Success");
         }
         else {
-
             return res.json("Failed");
         }
     })
