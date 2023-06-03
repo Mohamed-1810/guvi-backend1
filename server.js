@@ -117,8 +117,10 @@ app.post('/profile', (req,res) =>{
 
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM users WHERE email = ? AND password = ? ";
+    console.log(req.body);
     db.query(sql,[req.body.email, req.body.password], (err, data) => {
         console.log(data);
+        console.log(err);
         if (err) {
             return res.json({ Message: "Server Side Error" });
         }
