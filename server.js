@@ -12,7 +12,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: ["http://localhost:3000"],
+        // origin: ["http://localhost:3000"],
+        origin: ["https://guvi-task2.netlify.app/"],
         methods: ["POST", "GET"],
         credentials: true
     }
