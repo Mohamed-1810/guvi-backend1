@@ -88,9 +88,9 @@ app.post('/signup', (req, res) => {
         req.body.email,
         req.body.password
     ]
-    // console.log(values);
+    console.log(values);
     db.query(sql, [values], (err, data) => {
-        // console.log(data);
+        console.log(data);
         console.log(err);
         if (err) {
             return res.json("Error");
