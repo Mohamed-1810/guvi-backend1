@@ -10,21 +10,22 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors(
-//     {
-//         origin: ["http://localhost:3000"],
-//         // origin: ["https://guvi-task2.netlify.app/"],
-//         methods: ["POST", "GET"],
-//         credentials: true
-//     }
-// ));
+app.use(cors(
+    {
+        // origin: ["http://localhost:3000"],
+        origin: ["https://guvi-task3.netlify.app/"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
+
+// app.use(cors());
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'https://guvi-task3.netlify.app');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
-// app.use(cors());
 const db = mysql.createConnection({
     host: "mysql-129792-0.cloudclusters.net",
     user: "admin",
