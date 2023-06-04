@@ -18,7 +18,7 @@ app.use(cors(
         credentials: true
     }
 ));
-app.use(cors());
+// app.use(cors());
 const db = mysql.createConnection({
     host: "mysql-129792-0.cloudclusters.net",
     user: "admin",
