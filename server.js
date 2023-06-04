@@ -65,7 +65,14 @@ app.get('/', verifyUser, (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
-
+    const Db = mysql.createConnection({
+        host: "mysql-129792-0.cloudclusters.net",
+        user: "admin",
+        password: "KpZ8ijmG",
+        database: "guvitask",
+        port:15618,
+        // connectTimeout: 200000, 
+    })
     const sql = "INSERT INTO users (`name`,`email`,`password`) VALUES(?)";
     const values = [
         req.body.name,
@@ -73,7 +80,7 @@ app.post('/signup', (req, res) => {
         req.body.password
     ]
     console.log(values);
-    db.query(sql, [values], (err, data) => {
+    Db.query(sql, [values], (err, data) => {
         console.log(data);
         console.log(err);
         if (err) {
@@ -86,8 +93,16 @@ app.post('/signup', (req, res) => {
 })
 
 app.post('/profile', (req,res) =>{
+    const Db = mysql.createConnection({
+        host: "mysql-129792-0.cloudclusters.net",
+        user: "admin",
+        password: "KpZ8ijmG",
+        database: "guvitask",
+        port:15618,
+        // connectTimeout: 200000, 
+    })
     const sql = "UPDATE users SET age= ?, phone =?, qualification =?  WHERE email = ?";
-    db.query(sql,[req.body.age,req.body.phone,req.body.qualification,req.body.email], (err,data)=>{
+    Db.query(sql,[req.body.age,req.body.phone,req.body.qualification,req.body.email], (err,data)=>{
         // console.log(data);
         console.log(err);
         if (err) {
