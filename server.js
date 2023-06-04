@@ -65,6 +65,7 @@ app.get('/', verifyUser, (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
+
     const sql = "INSERT INTO users (`name`,`email`,`password`) VALUES(?)";
     const values = [
         req.body.name,
@@ -100,9 +101,18 @@ app.post('/profile', (req,res) =>{
 })
 
 app.post('/login', (req, res) => {
+    const Db = mysql.createConnection({
+        host: "mysql-129792-0.cloudclusters.net",
+        user: "admin",
+        password: "KpZ8ijmG",
+        database: "guvitask",
+        port:15618,
+        // connectTimeout: 200000, 
+    })
+    
     const sql = "SELECT * FROM users WHERE email = ? AND password = ? ";
     // console.log('Req body ' + req.body);
-    db.query(sql,[req.body.email, req.body.password], (err, data) => {
+    Db.query(sql,[req.body.email, req.body.password], (err, data) => {
         console.log(data);
         console.log(err);
         if (err) {
