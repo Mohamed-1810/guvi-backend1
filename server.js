@@ -125,6 +125,7 @@ app.get('/logout', (req,res) =>{
     res.clearCookie('token');
     return res.json({Status:"Success"})
 })
+db.end();
 
 console.log(process.env.PORT);
 const PORT = process.env.PORT || 8081
