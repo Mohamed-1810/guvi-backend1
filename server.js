@@ -12,14 +12,13 @@ app.use(express.json());
 app.use(cookieParser());
 // app.use(cors(
 //     {
-//         // origin: ["http://localhost:3000"],
-//         origin: ["https://guvi-task3.netlify.app/"],
+//         origin: ["http://localhost:3000"],
+//         // origin: ["https://guvi-task3.netlify.app/"],
 //         methods: ["POST", "GET"],
 //         credentials: true
 //     }
 // )); 
 
-// app.use(cors());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'https://guvi-task3.netlify.app');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -28,12 +27,22 @@ app.use((req, res, next) => {
   
     next();
   });
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//     res.header('Access-Control-Allow-Credentials', 'true'); // Include this line
+  
+//     next();
+//   });
+  
+// app.use(cors());
 const db = mysql.createConnection({
-    host: "mysql-129792-0.cloudclusters.net",
-    user: "admin",
-    password: "KpZ8ijmG",
-    database: "guvitask",
-    port:15618,
+    host: "sql6.freesqldatabase.com",
+    user: "sql6632446",
+    password: "XsSkfQqEHY",
+    database: "sql6632446",
+    port:3306,
     // connectTimeout: 200000, 
 })
 
@@ -66,13 +75,14 @@ app.get('/', verifyUser, (req, res) => {
 
 app.post('/signup', (req, res) => {
     const Db = mysql.createConnection({
-        host: "mysql-129792-0.cloudclusters.net",
-        user: "admin",
-        password: "KpZ8ijmG",
-        database: "guvitask",
-        port:15618,
+        host: "sql6.freesqldatabase.com",
+        user: "sql6632446",
+        password: "XsSkfQqEHY",
+        database: "sql6632446",
+        port:3306,
         // connectTimeout: 200000, 
     })
+   
     const sql = "INSERT INTO users (`name`,`email`,`password`) VALUES(?)";
     const values = [
         req.body.name,
@@ -93,12 +103,13 @@ app.post('/signup', (req, res) => {
 })
 
 app.post('/profile', (req,res) =>{
+   
     const Db = mysql.createConnection({
-        host: "mysql-129792-0.cloudclusters.net",
-        user: "admin",
-        password: "KpZ8ijmG",
-        database: "guvitask",
-        port:15618,
+        host: "sql6.freesqldatabase.com",
+        user: "sql6632446",
+        password: "XsSkfQqEHY",
+        database: "sql6632446",
+        port:3306,
         // connectTimeout: 200000, 
     })
     const sql = "UPDATE users SET age= ?, phone =?, qualification =?  WHERE email = ?";
@@ -116,14 +127,16 @@ app.post('/profile', (req,res) =>{
 })
 
 app.post('/login', (req, res) => {
+    
     const Db = mysql.createConnection({
-        host: "mysql-129792-0.cloudclusters.net",
-        user: "admin",
-        password: "KpZ8ijmG",
-        database: "guvitask",
-        port:15618,
+        host: "sql6.freesqldatabase.com",
+        user: "sql6632446",
+        password: "XsSkfQqEHY",
+        database: "sql6632446",
+        port:3306,
         // connectTimeout: 200000, 
     })
+   
     
     const sql = "SELECT * FROM users WHERE email = ? AND password = ? ";
     // console.log('Req body ' + req.body);
@@ -152,7 +165,7 @@ app.get('/logout', (req,res) =>{
 })
 db.end();
 
-console.log(process.env.PORT);
+// console.log(process.env.PORT);
 const PORT = process.env.PORT || 8081
 app.listen(PORT, () => {
     console.log("listening");
